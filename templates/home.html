@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FWI Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        h1 {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 50px;
+            color: #0c5878;
+            text-align: center;
+        }
+        .form-group input {
+            width: 50%; /* Adjusted to make input tabs smaller */
+            margin: 0 auto; /* Center-align input fields */
+            display: block;
+        }
+        button {
+            width: 25%; /* Reduced button size to 1/4 of the original width */
+            height: 40px; /* Reduces the height of the button */
+            padding: 5px; /* Reduces the padding inside the button */
+            margin: 10px auto; /* Centers the button with some margin */
+            font-size: 14px; /* Adjust font size to make the button text smaller */
+            color: aqua; /* Sets text color */
+            display: block;
+        }
+        h2 {
+            font-family:"Georgia", cursive, sans-serif;
+            color: #000000;
+            font-size: 40px;
+            text-align: center;
+        }
+        .container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">FWI Prediction Model</h1>
+        <!-- Main Input For Receiving Query to our ML -->
+        <form action="{{ url_for('predict_datapoint') }}" method="POST">
+            <div class="form-group">
+                <input type="text" class="form-control" name="Temperature" placeholder="Enter Temperature" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="RH" placeholder="Enter RH" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Ws" placeholder="Enter Wind Speed" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Rain" placeholder="Enter Rainfall" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="FFMC" placeholder="Enter FFMC" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="DMC" placeholder="Enter DMC" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="ISI" placeholder="Enter ISI" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Classes" placeholder="Enter Fire Weather Class" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="Region" placeholder="Enter Region" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 150px; height: 40px; margin: 10px auto; display: inline-block; color: white;">Predict</button>
+        </form>
+
+        <!-- Prediction Result -->
+        <h2 class="mt-4">The Predicted FWI is: {{ result }}</h2>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
